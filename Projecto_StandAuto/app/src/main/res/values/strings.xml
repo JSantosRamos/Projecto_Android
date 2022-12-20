@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Projecto_StandAuto</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtMailHint" translatable="false">Inserir E-Mail</string>
+    <string name="txtPasswordHint">Inserir Password</string>
+    <string name="btnLogin">Login</string>
+    <string name="image">Image</string>
+    <string name="btnSignup">Signup</string>
+    <string name="txtNameHint">Inserir Nome</string>
+    <string name="txtNumberHint">Inserir Numero</string>
+    <string name="txtNifHint">Inserir Nif</string>
+    <string name="txtPasswordConfHint">Confirmar Password</string>
+    <string name="tvMarca">Marca:</string>
+    <string name="tvModelo">Modelo:</string>
+    <string name="tvAno">Ano:</string>
+    <string name="tvPreco">Preço:</string>
+    <string name="tvKm">Km:</string>
+    <string name="tvCombustivel">Combustível:</string>
+    <string name="tvItemDetalhe">Detalhes</string>
+
+    <string name="erroEmail">Email Inválido</string>
+    <string name="erroPass">Password Inválido</string>
+    <string name="erroNome">Email Inválido</string>
+    <string name="erroNumero">Numero Inválido</string>
+    <string name="erroNif">Nif Inválido</string>
+    <string name="erroPassConf">Passwords não correspondem</string>
+
+    <string name="semInternet">Sem Internet</string>
+
+    <string name="veiculosLista">Veículos</string>
+
+    <string name="ndOpen">Open</string>
+    <string name="ndClose">Close</string>
+</resources>
