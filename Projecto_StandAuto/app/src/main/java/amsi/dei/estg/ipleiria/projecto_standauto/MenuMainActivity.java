@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -29,7 +31,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculos.SingletonVeiculos;
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculos.Veiculo;
+
+public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView nV;
     private DrawerLayout dL;
@@ -63,9 +68,12 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int opcao = item.getItemId();
         Fragment fragment = null;
-        switch (opcao){
+        switch (opcao) {
             case R.id.navLista:
                 fragment = new ListaVeiculosFragment();
+                break;
+            case R.id.navFavoritos:
+                fragment = new ListaFavoritosFragment();
                 break;
         }
 
@@ -74,13 +82,13 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         return false;
     }
 
-    private boolean carregarFragmentoInicial(){
+    private boolean carregarFragmentoInicial() {
         Menu menu = nV.getMenu();
         MenuItem item = menu.getItem(0);
         item.setChecked(true);
         return onNavigationItemSelected(item);
     }
 
-    private void carregarHeader(){
+    private void carregarHeader() {
     }
 }

@@ -65,6 +65,10 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
             @Override
             public void onClick(View view) {
 
+               /* Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                intent.putExtra(etEmail.toString(), etPwd.toString());
+                startActivity(intent);
+                finish();*/
                 validarLogin();
             }
         });

@@ -29,6 +29,7 @@
     <string name="semInternet">Sem Internet</string>
 
     <string name="veiculosLista">Veículos</string>
+    <string name="favoritosLista">Favoritos</string>
 
     <string name="ndOpen">Open</string>
     <string name="ndClose">Close</string>

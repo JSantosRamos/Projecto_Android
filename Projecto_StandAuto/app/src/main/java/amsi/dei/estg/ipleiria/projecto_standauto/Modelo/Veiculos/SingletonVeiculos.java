@@ -23,18 +23,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 import amsi.dei.estg.ipleiria.projecto_standauto.Listener.LoginListener;
+import amsi.dei.estg.ipleiria.projecto_standauto.Listener.VeiculosListener;
 import amsi.dei.estg.ipleiria.projecto_standauto.R;
 import amsi.dei.estg.ipleiria.projecto_standauto.utils.JsonParserHelper;
 
-public class SingletonVeiculos extends AppCompatActivity {
+public class SingletonVeiculos {
 
     private static SingletonVeiculos instancia = null;
     private ArrayList<Veiculo> veiculos;
     private LoginListener loginListener;
+    private VeiculosListener veiculosListener;
 
     private static RequestQueue mRequestQueue;
-    private String urlLoginAPI = "http://10.0.2.2:80/api/users/login";
+    private final String urlLoginAPI = "http://10.0.2.2:80/api/users/login";
+    private final String urlVeiculosAPI = "http://10.0.2.2:80/api/vehicles";
 
+    private VeiculosDBHelper veiculosDBHelper = null;
 
     public static synchronized SingletonVeiculos getInstance(Context context) {
         if (instancia == null) {
@@ -46,6 +50,7 @@ public class SingletonVeiculos extends AppCompatActivity {
 
     private SingletonVeiculos(Context context) {
         veiculos = new ArrayList<>();
+        veiculosDBHelper = new VeiculosDBHelper(context);
     }
 
     public Veiculo getVeiculo(int idVeiculo) {
@@ -57,47 +62,71 @@ public class SingletonVeiculos extends AppCompatActivity {
         return null;
     }
 
+    public void adicionarVeiculosBD(ArrayList<Veiculo> list) {
+        veiculosDBHelper.removerAllVeiculosBD();
 
-    public ArrayList<Veiculo> getVeiculos() {
-        return veiculos = getFromAPI();
+        for (Veiculo vei : list) {
+            adicionarVeiculoBD(vei);
+        }
     }
 
+    public void adicionarVeiculoBD(Veiculo veiculo) {
+        veiculosDBHelper.adicionarVeiculoBD(veiculo);
+    }
 
-    private ArrayList<Veiculo> getFromAPI() {
+    public ArrayList<Veiculo> getVeiculosBD() {
+        veiculos = veiculosDBHelper.getAllVeiculosBD();
+        return veiculos;
+    }
 
-        RequestQueue mRequestQueue;
-        StringRequest mStringRequest;
-        String url = "http://10.0.2.2:80/api/vehicles";
+    public ArrayList<Veiculo> getFavoritosBD() {
 
-        ArrayList<Veiculo> veiculosAPI = new ArrayList<Veiculo>();
+        if (veiculos == null) {
+            veiculos = getVeiculosBD();
+        }
 
-        // RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(this);
+        ArrayList<Integer> idList = veiculosDBHelper.getAllFavoritosBD();
+
+        ArrayList<Veiculo> newList = new ArrayList<>();
+
+        for (int id :
+                idList) {
+            for (Veiculo veiculo : veiculos) {
+                if (veiculo.getId() == id) {
+                    newList.add(veiculo);
+                }
+            }
+        }
+
+        return newList;
+    }
+
+    //API
+    public void getAllVeiculosAPI(final Context context) {
+
+        if (!JsonParserHelper.isConnectedInternet(context)) {
+            Toast.makeText(context, R.string.semInternet, Toast.LENGTH_SHORT).show();
+        }
 
         // String Request initialized
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
-                url,
+                urlVeiculosAPI,
                 null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         veiculos = JsonParserHelper.parserJsonVeiculos(response);
-                        String texto = "";
+                        adicionarVeiculosBD(veiculos);
 
-                        if (veiculos.size() > 0) {
-                            Veiculo veiculo = veiculos.get(0);
-                            texto = "Id: " + veiculo.getId() + "Marca: " + veiculo.getMarca();
-                        } else {
-                            texto = "Noooo";
+                        if (veiculosListener != null) {
+                            veiculosListener.onRefreshlista(veiculos);
                         }
-
-                        //Toast.makeText(getApplicationContext(), "ResponseT:" + texto, Toast.LENGTH_LONG).show();//display the response on screen
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ResponseF:" + error.getMessage(), Toast.LENGTH_LONG).show();//display the response on screen
+                Toast.makeText(context, "ResponseF:" + error.getMessage(), Toast.LENGTH_LONG).show();//display the response on screen
             }
         }) {
             @Nullable
@@ -113,12 +142,14 @@ public class SingletonVeiculos extends AppCompatActivity {
         };
 
         mRequestQueue.add(jsonArrayRequest);
-
-        return veiculosAPI;
     }
 
     public void setLoginListener(LoginListener loginListener) {
         this.loginListener = loginListener;
+    }
+
+    public void setVeiculosListener(VeiculosListener veiculosListener) {
+        this.veiculosListener = veiculosListener;
     }
 
     public void loginAPI(final String email, final String password, Context context) {
@@ -139,7 +170,7 @@ public class SingletonVeiculos extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ResponseF:" + error.getMessage(), Toast.LENGTH_LONG).show();//display the response on screen
+                Toast.makeText(context, "Response:" + error.getMessage(), Toast.LENGTH_LONG).show();//display the response on screen
             }
         }) {
             @Nullable
@@ -154,5 +185,9 @@ public class SingletonVeiculos extends AppCompatActivity {
             }
         };
         mRequestQueue.add(stringRequest);
+    }
+
+    public boolean adicionarVeiculoFavoritosBD(Veiculo veiculo) {
+        return veiculosDBHelper.adicionarVeiculoFavoritosDB(veiculo);
     }
 }

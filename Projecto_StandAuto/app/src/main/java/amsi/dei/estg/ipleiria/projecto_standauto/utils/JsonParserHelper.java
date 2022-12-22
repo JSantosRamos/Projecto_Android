@@ -45,8 +45,25 @@ public class JsonParserHelper {
                 JSONObject jsonVeiculo = (JSONObject) resposta.get(i);
                 int id = jsonVeiculo.getInt("id");
                 String marca = jsonVeiculo.getString("brand");
+                String modelo = jsonVeiculo.getString("model");
+                String serie = jsonVeiculo.getString("serie");
+                String segmento = jsonVeiculo.getString("type");
+                String combustivel = jsonVeiculo.getString("fuel");
+                String km = jsonVeiculo.getString("mileage");
+                String motor = jsonVeiculo.getString("engine");
+                String cor = jsonVeiculo.getString("color");
+                int ano = jsonVeiculo.getInt("year");
+                int nportas = jsonVeiculo.getInt("doorNumber");
+                String caixa = jsonVeiculo.getString("transmission");
+                double preco = jsonVeiculo.getDouble("price");
+                String imagem = jsonVeiculo.getString("image");
+                String matricula = jsonVeiculo.getString("plate");
+                String descricao = jsonVeiculo.getString("description");
+                String titulo = jsonVeiculo.getString("title");
+                int cv = jsonVeiculo.getInt("cv");
 
-                Veiculo veiculoAPI = new Veiculo(id, marca);
+                //Veiculo veiculoAPI = new Veiculo(id, marca, modelo, serie, segmento, combustivel, km, motor, cor, ano, nportas, caixa, matricula, imagem, preco, cv, titulo, descricao);
+                Veiculo veiculoAPI = new Veiculo(id, marca, ano, imagem, combustivel);
                 veiculosLista.add(veiculoAPI);
             }
 

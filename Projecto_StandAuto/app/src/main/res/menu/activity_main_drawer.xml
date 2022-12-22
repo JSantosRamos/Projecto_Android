@@ -10,5 +10,10 @@
             android:id="@+id/navLista"
             android:icon="@drawable/ic_menu_lista"
             android:title="@string/veiculosLista" />
+
+        <item
+            android:id="@+id/navFavoritos"
+            android:icon="@drawable/ic_menu_lista"
+            android:title="@string/favoritosLista" />
     </group>
 </menu>

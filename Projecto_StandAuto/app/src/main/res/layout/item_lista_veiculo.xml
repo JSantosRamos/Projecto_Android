@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardElevation="50dp"
+    app:cardCornerRadius="30dp"
+
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="149dp"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="10dp">
 
         <ImageView
-            android:id="@+id/ivCapa"
-            android:layout_width="249dp"
-            android:layout_height="135dp"
+            android:id="@+id/ivImageLista"
+            android:layout_width="395dp"
+            android:layout_height="120dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/logo2" />
+            app:srcCompat="@drawable/logo2"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,4 +137,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>
