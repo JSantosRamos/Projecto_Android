@@ -8,12 +8,22 @@
         android:id="@+id/menuVeiculos">
         <item
             android:id="@+id/navLista"
-            android:icon="@drawable/ic_menu_lista"
-            android:title="@string/veiculosLista" />
+            android:icon="@drawable/ic_testdrive_capa"
+            android:title="@string/veiculosNav" />
 
         <item
             android:id="@+id/navFavoritos"
+            android:icon="@drawable/ic_favorito_adicionado"
+            android:title="@string/favoritosNav" />
+
+        <item
+            android:id="@+id/navTestdrive"
+            android:icon="@drawable/ic_testdrive_bookmark"
+            android:title="@string/testdriveNav" />
+
+        <item
+            android:id="@+id/navMeusVeiculos"
             android:icon="@drawable/ic_menu_lista"
-            android:title="@string/favoritosLista" />
+            android:title="@string/meusveiculosNav" />
     </group>
 </menu>

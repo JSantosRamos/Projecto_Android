@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Patterns;
@@ -32,12 +33,16 @@ import amsi.dei.estg.ipleiria.projecto_standauto.utils.JsonParserHelper;
 
 public class LoginActivity extends AppCompatActivity implements LoginListener {
 
+    public static final String EMAIL = "email";
+    public static final String PASSWORD = "password";
+    public static final String DADOS_USER = "DADOS_USER";
+    public static final String EMAIL_KEY = "EMAIL_KEY";
+    public static final String NOME_KEY = "NOME_KEY";
+    public static final String ID_KEY = "ID_KEY";
+    public static final String PASSWORD_KEY = "PASSWORD_KEY";
+
     private Button btnLogin, btnSignup;
     private EditText etEmail, etPwd;
-
-    //private RequestQueue mRequestQueue;
-    // private StringRequest mStringRequest;
-    //private String url = "http://10.0.2.2:80/api/users/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +54,12 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         etEmail = findViewById(R.id.etEmailLogin);
         etPwd = findViewById(R.id.etPasswordLogin);
 
-        etEmail.setText("admin@gmail.com");
-        etPwd.setText("admin123");
+        SharedPreferences sharedPref = this.getSharedPreferences(DADOS_USER, Context.MODE_PRIVATE);
+        String email = sharedPref.getString(LoginActivity.EMAIL_KEY, "");
+        String password = sharedPref.getString(LoginActivity.PASSWORD_KEY, "");
+
+        etEmail.setText(email);
+        etPwd.setText(password);
 
         //Listener
         btnSignup.setOnClickListener(new View.OnClickListener() {
@@ -64,11 +73,6 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-               /* Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                intent.putExtra(etEmail.toString(), etPwd.toString());
-                startActivity(intent);
-                finish();*/
                 validarLogin();
             }
         });
@@ -89,38 +93,6 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         }
 
         SingletonVeiculos.getInstance(this).loginAPI(email, password, this);
-
-        // RequestQueue initialized
-        /*mRequestQueue = Volley.newRequestQueue(this);
-
-        // String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (JsonParserHelper.parserJsonLogin(response)) {
-                    startActivity(menuMain);
-                }
-                // Toast.makeText(getApplicationContext(), "ResponseT:" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ResponseF:" + error.getMessage(), Toast.LENGTH_LONG).show();//display the response on screen
-            }
-        }) {
-            @Nullable
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-
-                String credentials = email + ":" + password;
-                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-                headers.put("Authorization", auth);
-                return headers;
-            }
-        };
-
-        mRequestQueue.add(mStringRequest);*/
     }
 
     private boolean isEmailValido(String email) {
@@ -139,15 +111,15 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
     }
 
     @Override
-    public void onValidateLogin(boolean success, String email, Context context) {
-        if (success){
+    public void onValidateLogin(boolean success, String email, String password, Context context) {
+        if (success) {
             Intent intent = new Intent(this, MenuMainActivity.class);
-            intent.putExtra(email, email);
+            intent.putExtra(EMAIL, email);
+            intent.putExtra(PASSWORD, password);
             startActivity(intent);
             finish();
-        }
-        else{
-            Toast.makeText(context, "Login Inválido, Tente novamente", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, R.string.loginInvalido, Toast.LENGTH_SHORT).show();
         }
     }
 }

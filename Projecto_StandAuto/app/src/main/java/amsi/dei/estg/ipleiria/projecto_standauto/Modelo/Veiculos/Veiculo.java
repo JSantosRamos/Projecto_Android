@@ -1,15 +1,34 @@
 package amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculos;
 
-import java.io.Serializable;
-public class Veiculo{
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+
+public class Veiculo {
 
     private int id;
     private String marca;
     private String modelo;
-    private  String serie;
+    private String serie;
+    private String segmento;
+    private String combustivel;
+    private String quilometros;
+    private String motor;
+    private String cor;
+    private int ano;
+    private int numeroPortas;
+    private String tipoCaixa;
+    private String matricula;
+    private String imagem;
+    private int preco; //é sempre um int
+    private int cv;
+    private String titulo;
+    private String descricao;
+    private ArrayList<String> imagensLista;
+
 
     public Veiculo(int id, String marca, String modelo, String serie, String segmento, String combustivel, String quilometros, String motor,
-                   String cor, int ano, int numeroPortas, String tipoCaixa, String matricula, String imagem, double preco, int cv, String titulo, String descricao) {
+                   String cor, int ano, int numeroPortas, String tipoCaixa, String matricula, String imagem, int preco, int cv, String titulo, String descricao, ArrayList<String> imagensLista) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -28,31 +47,8 @@ public class Veiculo{
         this.cv = cv;
         this.titulo = titulo;
         this.descricao = descricao;
+        this.imagensLista = imagensLista;
     }
-
-    public  Veiculo(int id, String marca, int ano ,String imagem, String combustivel){
-        this.id = id;
-        this.marca = marca;
-        this.ano = ano;
-        this.imagem = imagem;
-        this.combustivel = combustivel;
-    }
-
-    private String segmento;
-    private String combustivel;
-    private String quilometros;
-    private String motor;
-    private String cor;
-    private int ano;
-    private int numeroPortas;
-    private String tipoCaixa;
-    private String matricula;
-    private String imagem;
-    private double preco;
-    private int cv;
-    private String titulo;
-    private String descricao;
-
 
     public int getId() {
         return id;
@@ -158,11 +154,11 @@ public class Veiculo{
         this.imagem = imagem;
     }
 
-    public double getPreco() {
+    public int getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(int preco) {
         this.preco = preco;
     }
 
@@ -197,4 +193,13 @@ public class Veiculo{
     public void setSerie(String serie) {
         this.serie = serie;
     }
+
+    public ArrayList<String> getImagensLista() {
+        return imagensLista;
+    }
+
+    public void setImagensLista(ArrayList<String> imagensLista) {
+        this.imagensLista = imagensLista;
+    }
+
 }

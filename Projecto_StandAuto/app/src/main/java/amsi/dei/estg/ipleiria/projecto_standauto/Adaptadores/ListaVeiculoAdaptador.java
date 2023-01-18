@@ -1,9 +1,7 @@
 package amsi.dei.estg.ipleiria.projecto_standauto.Adaptadores;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +67,7 @@ public class ListaVeiculoAdaptador extends BaseAdapter {
     }
 
     private class ViewHolderLista {
-        private TextView tvMarca, tvAno, tvCombustivel;
+        private TextView tvMarca, tvAno, tvCombustivel, tvKm, tvPreco;
         private ImageView ivImage;
 
         public ViewHolderLista(View view) {
@@ -77,18 +75,41 @@ public class ListaVeiculoAdaptador extends BaseAdapter {
             tvMarca = view.findViewById(R.id.tvMarcaLista);
             tvAno = view.findViewById(R.id.tvAnoLista);
             tvCombustivel = view.findViewById(R.id.tvCombustivelLista);
-            ivImage = view.findViewById(R.id.ivImageLista);
+            tvKm = view.findViewById(R.id.tvKmLista);
+            tvPreco = view.findViewById(R.id.tvPrecoLista);
+            ivImage = view.findViewById(R.id.ivImageMeuVeiculoLista);
         }
 
+        @SuppressLint("SetTextI18n")
         public void update(Veiculo veiculo) {
-            tvMarca.setText(veiculo.getMarca());
-            tvAno.setText("" + veiculo.getAno());
-            tvCombustivel.setText(veiculo.getCombustivel());
+            tvMarca.setText(" " + veiculo.getMarca());
+            tvAno.setText(" " + veiculo.getAno());
+            tvCombustivel.setText(" " + veiculo.getCombustivel());
+            tvPreco.setText(" " + veiculo.getPreco() + " €");
+            tvKm.setText(" " + veiculo.getQuilometros());
 
-            byte[] decodedString = Base64.decode(veiculo.getImagem(), Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            ivImage.setImageBitmap(decodedByte);
-            //Glide.with(context).load((veiculo.getImagem())).placeholder(R.drawable.logo2).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivImage);
+            String urlImage = veiculo.getImagem();
+            urlImage = urlImage.replace("http://backendstand.test/", "http://10.0.2.2:80/");
+
+            if (!veiculo.getImagem().isEmpty()) {
+                Glide.with(context).load(urlImage).placeholder(R.drawable.ic_car).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivImage);
+            } else {
+                ivImage.setImageResource(R.drawable.ic_car);
+            }
+
+           /* if (veiculo.getImagem().isEmpty()) {
+
+            } else {
+                try {
+                    byte[] decodedString = Base64.decode(veiculo.getImagem(), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    ivImage.setImageBitmap(decodedByte);
+                    //Glide.with(context).load((veiculo.getImagem())).placeholder(R.drawable.logo2).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivImage);
+
+                } catch (Exception ex) {
+                    ivImage.setImageResource(R.drawable.logo2);
+                }
+            }*/
         }
     }
 }

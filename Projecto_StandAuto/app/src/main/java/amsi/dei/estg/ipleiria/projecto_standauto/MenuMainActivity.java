@@ -75,6 +75,14 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
             case R.id.navFavoritos:
                 fragment = new ListaFavoritosFragment();
                 break;
+
+            case R.id.navTestdrive:
+                fragment = new ListaTestdrivesFragment();
+                break;
+
+            case R.id.navMeusVeiculos:
+                fragment = new ListaMeusVeiculosFragament();
+                break;
         }
 
         fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();

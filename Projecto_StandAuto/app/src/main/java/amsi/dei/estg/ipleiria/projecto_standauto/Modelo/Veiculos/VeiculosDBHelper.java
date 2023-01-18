@@ -121,29 +121,9 @@ public class VeiculosDBHelper extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Integer> getAllFavoritosBD() {
 
-        ArrayList<Integer> lista = new ArrayList<>();
-        Cursor cursor = this.db.query(
-                TABLE_FAVORITOS,
-                new String[]{ID_VEICULO},
-                null,
-                null,
-                null,
-                null,
-                null
-        );
 
-        if (cursor.moveToFirst()) {
-            do {
-                lista.add(cursor.getInt(0));
-            } while (cursor.moveToNext());
-        }
-        return lista;
-
-    }
-
-    public ArrayList<Veiculo> getAllVeiculosBD() {
+    /*public ArrayList<Veiculo> getAllVeiculosBD() {
         ArrayList<Veiculo> lista = new ArrayList<>();
         Cursor cursor = this.db.query(
                 TABLE_VEICULOS,
@@ -168,7 +148,7 @@ public class VeiculosDBHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return lista;
-    }
+    }*/
 
     /*public boolean removerVeiculo(int id) {
         int nDelete = db.delete(TABLE_NAME, ID + " = ?", new String[]{"" + id});
@@ -181,9 +161,29 @@ public class VeiculosDBHelper extends SQLiteOpenHelper {
     }
 
     //Favoritos
-    public boolean adicionarVeiculoFavoritosDB(Veiculo veiculo) {
+    public ArrayList<Integer> getAllFavoritosBD() {
 
-        removerVeiculoFavoritos(veiculo.getId()); //need fix...
+        ArrayList<Integer> lista = new ArrayList<>();
+        Cursor cursor = this.db.query(
+                TABLE_FAVORITOS,
+                new String[]{ID_VEICULO},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                lista.add(cursor.getInt(0));
+            } while (cursor.moveToNext());
+        }
+        return lista;
+
+    }
+
+    public boolean adicionarVeiculoFavoritosDB(Veiculo veiculo) {
 
         ContentValues values = new ContentValues();
         values.put(ID_VEICULO, veiculo.getId());
@@ -193,20 +193,20 @@ public class VeiculosDBHelper extends SQLiteOpenHelper {
         return id != -1;
     }
 
-    public boolean removerVeiculoFavoritos(int id) {
+    public void removerVeiculoFavoritos(int id) {
         int nDelete = db.delete(TABLE_FAVORITOS, ID_VEICULO + " = ?", new String[]{"" + id});
-
-        return nDelete > 0;
     }
- /*   private boolean verificarVeiculoFavortiosDB(int idVeiculo) {
 
-        String query = "SELECT idVeiculo FROM favoritos WHERE idVeiculo =" + idVeiculo;
+    public boolean verificarVeiculoFavortiosDB(int idVeiculo) {
 
-        Cursor cursor = db.rawQuery(query, new String[]{ID_VEICULO});
+        Cursor cursor = null;
+        String sql = "SELECT idVeiculo FROM " + TABLE_FAVORITOS + " WHERE idVeiculo=" + idVeiculo;
+        cursor = db.rawQuery(sql, null);
 
-        if (cursor.moveToFirst()){
-           return true;
+        if (cursor.getCount() > 0) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
-    }*/
+    }
 }

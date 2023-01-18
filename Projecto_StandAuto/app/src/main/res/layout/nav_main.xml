@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/purple_200"
+    android:background="#0084C0"
     android:gravity="top"
     android:orientation="vertical"
     android:padding="16dp"
@@ -16,12 +16,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_launcher_background"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+        app:srcCompat="@drawable/ic_person_perfil"
         tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/tvEmailheader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#311B92" />
+        android:textColor="@color/white" />
 </LinearLayout>

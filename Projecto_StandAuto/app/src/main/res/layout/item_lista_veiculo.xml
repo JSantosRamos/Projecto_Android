@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:cardElevation="50dp"
-    app:cardCornerRadius="30dp"
-
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="149dp"
+        android:layout_height="150dp"
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/ivImageLista"
-            android:layout_width="395dp"
-            android:layout_height="120dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/logo2"
-            />
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivImageMeuVeiculoLista"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="135dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -53,26 +54,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tvPreco"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvPrecoLista"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -134,7 +115,28 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvPreco"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPrecoLista"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#0017FF" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>

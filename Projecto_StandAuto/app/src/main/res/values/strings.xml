@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Projecto_StandAuto</string>
+    <string name="app_name">StandAuto</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="txtMailHint" translatable="false">Inserir E-Mail</string>
+    <string name="txtMailHint" translatable="false">Inserir Email</string>
     <string name="txtPasswordHint">Inserir Password</string>
     <string name="btnLogin">Login</string>
     <string name="image">Image</string>
@@ -17,20 +17,67 @@
     <string name="tvPreco">Preço:</string>
     <string name="tvKm">Km:</string>
     <string name="tvCombustivel">Combustível:</string>
-    <string name="tvItemDetalhe">Detalhes</string>
+    <string name="tvTitulo">Título:</string>
+    <string name="tvQuilómetros">Quilómetros:</string>
+    <string name="tvPreço">Preço:</string>
+    <string name="tvMotor">Motor:</string>
+    <string name="tvCV">CV:</string>
+    <string name="tvCaixa">Tipo de Caixa:</string>
+    <string name="tvSerie">Serie:</string>
+    <string name="tvSegmento">Segmento:</string>
+    <string name="tvCor">Cor:</string>
+    <string name="tvVazio">-</string>
+    <string name="tvDadosVenda">Dados da Venda</string>
+    <string name="tvMorada">Morada:</string>
+    <string name="tvValor">Valor:</string>
+
+    <string name="tvItemCaracteristicas">Caracteristicas</string>
+    <string name="tvItemDescricao">Descrição</string>
 
     <string name="erroEmail">Email Inválido</string>
     <string name="erroPass">Password Inválido</string>
-    <string name="erroNome">Email Inválido</string>
-    <string name="erroNumero">Numero Inválido</string>
-    <string name="erroNif">Nif Inválido</string>
+    <string name="erroNome">Nome Inválido</string>
     <string name="erroPassConf">Passwords não correspondem</string>
 
     <string name="semInternet">Sem Internet</string>
+    <string name="loginInvalido">Login Inválido</string>
 
-    <string name="veiculosLista">Veículos</string>
-    <string name="favoritosLista">Favoritos</string>
+    <string name="veiculosNav">Veículos</string>
+    <string name="favoritosNav">Favoritos</string>
+    <string name="testdriveNav">Teste-Drives</string>
+    <string name="meusveiculosNav">Meus Veículos</string>
 
     <string name="ndOpen">Open</string>
     <string name="ndClose">Close</string>
+
+    <string name="remover">Remover</string>
+
+    <string name="tvDia">Dia:</string>
+    <string name="tvHora">Hora:</string>
+    <string name="tvMatricula">Matricula:</string>
+    <string name="tvEstado">Estado:</string>
+    <string name="tvMotivo">Motivo:</string>
+
+    <string name="fabTestedrive">Test Drive</string>
+    <string name="tvDataTestdrive">Data:</string>
+    <string name="tvHoraTestdrive">Hora:</string>
+    <string name="tvMotivoTestdrive">Motivo:</string>
+
+    <string name="spinnerCombustivel">Combustivel</string>
+    <string name="spinnerAno">Ano</string>
+    <string name="spinnerMarca">Marca</string>
+    <string name="spinnerModelo">Modelo</string>
+
+
+    <string name="preference_key_email">Email_key</string>
+    <string name="preference_key_password">Password_key</string>
+    <string name="preference_key_id">ID_key</string>
+    <string name="preference_key_name">Name_key</string>
+    <string name="btnAdcionarFavorito">btnAdcionarFavorito</string>
+
+    <string name="menuVeiculoInfo">Informação</string>
+    <string name="menuVeiculoRegistos">Registos</string>
+
+    <string name="pesquisa">Pesquisar</string>
+    <string name="filtro">Filtrar</string>
 </resources>
