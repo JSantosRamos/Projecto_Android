@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".DetalhesTestdriveActivity">
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#0084C0"
-        app:srcCompat="@drawable/ic_car" />
+    tools:context=".views.DetalhesTestdriveActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,83 +18,105 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tvDataTestdrive"
-                android:textAlignment="textStart"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnDataTestedrive"
-                style="?android:spinnerStyle"
+            <ImageView
+                android:id="@+id/ivCapaTestedriveDetalhe"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:text="Button"
-                android:textColor="@color/black" />
-
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/ic_testdrive_capa" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
+            android:layout_margin="20dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tvHoraTestdrive"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerHoraTestdrive"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0084C0"
-                android:textAlignment="textStart"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvDataTestdrive"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tvMotivoTestdrive"
-                android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btnDataTestedrive"
+                    style="?android:spinnerStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:text="Button"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black" />
 
-            <EditText
-                android:id="@+id/etMotivoTestdrive"
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:layout_marginTop="20sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvHoraTestdrive"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerHoraTestdrive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#0084C0"
+                    android:textAlignment="textStart"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvMotivoTestdrive"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etMotivoTestdrive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:minHeight="48dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingAdicionarTestdrive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:backgroundTint="#0084C0"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_done"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:focusable="true" />
 
     </LinearLayout>
 
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingAdicionarTestdrive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:backgroundTint="#0084C0"
+        android:clickable="true"
+        android:focusable="true"
+        app:tint="@android:color/white"
+        app:srcCompat="@drawable/ic_done"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

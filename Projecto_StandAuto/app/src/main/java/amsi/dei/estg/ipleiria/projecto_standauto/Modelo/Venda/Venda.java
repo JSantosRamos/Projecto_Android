@@ -1,8 +1,31 @@
 package amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Venda;
 
-import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculos.Veiculo;
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculo.Veiculo;
 
 public class Venda {
+
+    private int id;
+    private double valor;
+    private String nif;
+    private String morada;
+    private String nome;
+    private Veiculo veiculo;
+
+    public Venda(int id, double valor, String nif, String morada, String nome, Veiculo veiculo) {
+        this.id = id;
+        this.nif = nif;
+        this.valor = valor;
+        this.morada = morada;
+        this.nome = nome;
+        this.veiculo = veiculo;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return this.veiculo.getMarca() + "(" + this.veiculo.getModelo() + ")";
+    }
 
     public int getId() {
         return id;
@@ -51,27 +74,4 @@ public class Venda {
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
-
-    private int id;
-    private double valor;
-    private String nif;
-    private String morada;
-    private String nome;
-    private Veiculo veiculo;
-
-    public Venda(int id, double valor, String nif, String morada, String nome, Veiculo veiculo) {
-        this.id = id;
-        this.nif = nif;
-        this.valor = valor;
-        this.morada = morada;
-        this.nome = nome;
-        this.veiculo = veiculo;
-    }
-
-    @Override
-    public String toString() {
-        return this.veiculo.getMarca() + "(" + this.veiculo.getModelo() + ")";
-    }
-
-
 }

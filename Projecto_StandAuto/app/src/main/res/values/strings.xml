@@ -30,6 +30,8 @@
     <string name="tvDadosVenda">Dados da Venda</string>
     <string name="tvMorada">Morada:</string>
     <string name="tvValor">Valor:</string>
+    <string name="btnContactar">Contactar</string>
+
 
     <string name="tvItemCaracteristicas">Caracteristicas</string>
     <string name="tvItemDescricao">Descrição</string>
@@ -46,22 +48,23 @@
     <string name="favoritosNav">Favoritos</string>
     <string name="testdriveNav">Teste-Drives</string>
     <string name="meusveiculosNav">Meus Veículos</string>
+    <string name="perfilNav">Perfil</string>
 
     <string name="ndOpen">Open</string>
     <string name="ndClose">Close</string>
 
     <string name="remover">Remover</string>
 
-    <string name="tvDia">Dia:</string>
-    <string name="tvHora">Hora:</string>
-    <string name="tvMatricula">Matricula:</string>
-    <string name="tvEstado">Estado:</string>
-    <string name="tvMotivo">Motivo:</string>
+    <string name="tvDia">Dia: </string>
+    <string name="tvHora">Hora: </string>
+    <string name="tvMatricula">Matricula: </string>
+    <string name="tvEstado">Estado: </string>
+    <string name="tvMotivo">Motivo: </string>
 
-    <string name="fabTestedrive">Test Drive</string>
-    <string name="tvDataTestdrive">Data:</string>
-    <string name="tvHoraTestdrive">Hora:</string>
-    <string name="tvMotivoTestdrive">Motivo:</string>
+    <string name="btnTestedrive">Test Drive</string>
+    <string name="tvDataTestdrive">Data: </string>
+    <string name="tvHoraTestdrive">Hora: </string>
+    <string name="tvMotivoTestdrive">Motivo: </string>
 
     <string name="spinnerCombustivel">Combustivel</string>
     <string name="spinnerAno">Ano</string>
@@ -80,4 +83,9 @@
 
     <string name="pesquisa">Pesquisar</string>
     <string name="filtro">Filtrar</string>
+    <string name="partilhar">Partilhar</string>
+    <string name="favorito">Favorito</string>
+
+    <string name="standEmail">standauto@standauto.pt</string>
+    <string name="standwebpage">http://10.0.2.2:80/vehicle/view?id=</string>
 </resources>

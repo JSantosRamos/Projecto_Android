@@ -6,31 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingFavorito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_margin="10dp"
-        android:backgroundTint="#0084C0"
-        android:clickable="true"
-        android:contentDescription="@string/btnAdcionarFavorito"
-        android:focusable="true"
-        android:minHeight="48dp"
-        app:rippleColor="#FFFFFF"
-        app:srcCompat="@drawable/ic_favorito_nao_dicionado"
-        app:tint="@android:color/white" />
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabTestdrive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:backgroundTint="#0084C0"
-        android:text="@string/fabTestedrive"
-        android:textColor="@color/white" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -76,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="@string/tvItemCaracteristicas"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvTituloDetalhe" />
@@ -311,9 +286,41 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnTestdriveDetalheVeiculo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight="1"
+                android:text="@string/btnTestedrive" />
+
+            <Button
+                android:id="@+id/btnReserva"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:layout_weight="1"
+                android:text="@string/btnContactar" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

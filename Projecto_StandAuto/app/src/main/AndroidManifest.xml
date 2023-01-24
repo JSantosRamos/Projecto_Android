@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -17,35 +19,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".InfoVeiculoActivity"
+            android:name=".views.InfoVeiculoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MenuVeiculoActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".DetalhesTestdriveActivity"
+            android:name=".views.DetalhesTestdriveActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name=".views.SignupActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".views.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,14 +53,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DetalhesVeiculoActivity"
+            android:name=".views.DetalhesVeiculoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MenuMainActivity"
+            android:name=".views.MenuMainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Projecto_StandAuto.NoActionBar" />

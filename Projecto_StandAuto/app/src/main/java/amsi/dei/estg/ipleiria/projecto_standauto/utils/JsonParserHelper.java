@@ -11,21 +11,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Testdrive.Testdrive;
-import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculos.Veiculo;
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.User.User;
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculo.Veiculo;
 import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Venda.Venda;
 
 public class JsonParserHelper {
-    public static boolean parserJsonLogin(String resposta) {
+    public static User parserJsonLogin(String resposta) {
         try {
             JSONObject jsonLogin = new JSONObject(resposta);
             if (jsonLogin.getBoolean("success")) {
+                int id = jsonLogin.getInt("id");
+                String email = jsonLogin.getString("email");
+                String name = jsonLogin.getString("name");
 
-                return true;
+                return new User(id, name, email);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     public static String parserJsonSignup(String resposta) {
@@ -45,7 +49,6 @@ public class JsonParserHelper {
         }
         return "Registo inválido";
     }
-
 
     public static Boolean isConnectedInternet(Context context) {
         ConnectivityManager cm =
@@ -102,7 +105,6 @@ public class JsonParserHelper {
     //endregion
 
     //region TestDrives
-
     public static ArrayList<Testdrive> parserJsonTestDrives(JSONArray resposta) {
 
         ArrayList<Testdrive> list = new ArrayList<>();

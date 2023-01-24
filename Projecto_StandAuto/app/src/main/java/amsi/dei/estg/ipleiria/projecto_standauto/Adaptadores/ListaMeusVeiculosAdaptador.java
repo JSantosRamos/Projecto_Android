@@ -1,6 +1,5 @@
 package amsi.dei.estg.ipleiria.projecto_standauto.Adaptadores;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
-import amsi.dei.estg.ipleiria.projecto_standauto.ListaMeusVeiculosFragament;
-import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculos.Veiculo;
 import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Venda.Venda;
 import amsi.dei.estg.ipleiria.projecto_standauto.R;
 
@@ -55,7 +52,6 @@ public class ListaMeusVeiculosAdaptador extends BaseAdapter {
             convertView = lInflater.inflate(R.layout.item_lista_meus_veiculos, null);
         }
 
-        //preenchimento do view
         ListaMeusVeiculosAdaptador.ViewHolderLista viewHL = (ListaMeusVeiculosAdaptador.ViewHolderLista) convertView.getTag();
         if (viewHL == null) {
             viewHL = new ListaMeusVeiculosAdaptador.ViewHolderLista(convertView);
@@ -84,9 +80,9 @@ public class ListaMeusVeiculosAdaptador extends BaseAdapter {
             if (!venda.getVeiculo().getImagem().isEmpty()) {
                 String url = venda.getVeiculo().getImagem();
                 url = url.replace("http://backendstand.test/", "http://10.0.2.2:80/");
-                Glide.with(context).load(url).placeholder(R.drawable.ic_car).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivImage);
+                Glide.with(context).load(url).placeholder(R.drawable.ic_car_holo_light).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivImage);
             } else {
-                ivImage.setImageResource(R.drawable.ic_car);
+                ivImage.setImageResource(R.drawable.ic_car_holo_light);
             }
         }
     }

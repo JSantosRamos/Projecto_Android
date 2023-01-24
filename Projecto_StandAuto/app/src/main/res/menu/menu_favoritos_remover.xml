@@ -5,7 +5,6 @@
     >
     <item
         android:id="@+id/itemRemoerFavorito"
-        android:icon="@drawable/ic_favorito_remover"
         android:title="@string/remover"
         app:showAsAction="always"
         tools:targetApi="o" />

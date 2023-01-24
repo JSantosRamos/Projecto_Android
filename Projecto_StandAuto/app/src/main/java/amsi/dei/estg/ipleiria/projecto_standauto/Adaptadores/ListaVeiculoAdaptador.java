@@ -14,7 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
-import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculos.Veiculo;
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculo.Veiculo;
 import amsi.dei.estg.ipleiria.projecto_standauto.R;
 
 public class ListaVeiculoAdaptador extends BaseAdapter {
@@ -54,7 +54,6 @@ public class ListaVeiculoAdaptador extends BaseAdapter {
             convertView = lInflater.inflate(R.layout.item_lista_veiculo, null);
         }
 
-        //preenchimento do view
         ViewHolderLista viewHL = (ViewHolderLista) convertView.getTag();
         if (viewHL == null) {
             viewHL = new ViewHolderLista(convertView);
@@ -96,20 +95,6 @@ public class ListaVeiculoAdaptador extends BaseAdapter {
             } else {
                 ivImage.setImageResource(R.drawable.ic_car);
             }
-
-           /* if (veiculo.getImagem().isEmpty()) {
-
-            } else {
-                try {
-                    byte[] decodedString = Base64.decode(veiculo.getImagem(), Base64.DEFAULT);
-                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                    ivImage.setImageBitmap(decodedByte);
-                    //Glide.with(context).load((veiculo.getImagem())).placeholder(R.drawable.logo2).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivImage);
-
-                } catch (Exception ex) {
-                    ivImage.setImageResource(R.drawable.logo2);
-                }
-            }*/
         }
     }
 }

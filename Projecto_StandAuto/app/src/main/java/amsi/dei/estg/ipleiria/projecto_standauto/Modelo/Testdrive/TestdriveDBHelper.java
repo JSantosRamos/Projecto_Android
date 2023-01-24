@@ -12,7 +12,7 @@ import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Testdrive.Testdrive;
 
 public class TestdriveDBHelper extends SQLiteOpenHelper {
 
-    private final static String DB_NAME = "DBStandv3";
+    private final static String DB_NAME = "STAND";
     private final static String TABLE_NAME = "testdrives";
     private final static int DB_VERSION = 1;
     private static final String ID = "id";
@@ -26,9 +26,8 @@ public class TestdriveDBHelper extends SQLiteOpenHelper {
 
     public TestdriveDBHelper(Context contexto) {
         super(contexto, DB_NAME, null, DB_VERSION);
-
         this.bd = this.getWritableDatabase();
-
+        this.onCreate(bd);
     }
 
     @Override
@@ -40,13 +39,12 @@ public class TestdriveDBHelper extends SQLiteOpenHelper {
                 MOTIVO + " TEXT NOT NULL, " +
                 ESTADO + " TEXT NOT NULL, " +
                 IDVEICULO + " INTEGER NOT NULL);";
-
         db.execSQL(SQLtable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + DB_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
         this.onCreate(db);
     }
@@ -63,7 +61,6 @@ public class TestdriveDBHelper extends SQLiteOpenHelper {
 
         long id = this.bd.insert(TABLE_NAME, null, valores);
         if (id > -1) {
-            // test.setId(id);
             return test;
         }
         return null;

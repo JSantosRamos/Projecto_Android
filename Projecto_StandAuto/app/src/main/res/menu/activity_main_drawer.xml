@@ -4,26 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single"
-        android:id="@+id/menuVeiculos">
+    <group
+        android:id="@+id/menuVeiculos"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/navLista"
-            android:icon="@drawable/ic_testdrive_capa"
+            android:icon="@drawable/ic_home"
             android:title="@string/veiculosNav" />
 
+    </group>
+    <group>
         <item
             android:id="@+id/navFavoritos"
-            android:icon="@drawable/ic_favorito_adicionado"
+            android:icon="@drawable/ic_favorito"
             android:title="@string/favoritosNav" />
 
         <item
             android:id="@+id/navTestdrive"
-            android:icon="@drawable/ic_testdrive_bookmark"
+            android:icon="@drawable/ic_testdrive_marcacao"
             android:title="@string/testdriveNav" />
+        <item
+            android:id="@+id/navPerfil"
+            android:icon="@drawable/ic_person"
+            android:title="@string/perfilNav" />
 
         <item
             android:id="@+id/navMeusVeiculos"
-            android:icon="@drawable/ic_menu_lista"
+            android:icon="@drawable/ic_car_holo_light"
             android:title="@string/meusveiculosNav" />
     </group>
 </menu>

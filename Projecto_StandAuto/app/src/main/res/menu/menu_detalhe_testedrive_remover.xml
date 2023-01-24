@@ -6,7 +6,6 @@
         android:icon="@drawable/ic_remover"
         android:title="@string/remover"
         app:showAsAction="always"
-        android:iconTint="@color/white"
         />
 
 </menu>
