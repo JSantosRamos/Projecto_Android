@@ -60,6 +60,13 @@ public class ListaFavoritosFragment extends Fragment implements VeiculosListener
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        adaptador = new ListaVeiculoAdaptador(getContext(), SingletonVeiculos.getInstance(getContext()).getFavoritosBD(getContext()));
+        lvVeiculos.setAdapter(adaptador);
+    }
+
+    @Override
     public void onRefreshlista(ArrayList<Veiculo> list) {
         if (list != null) {
             lvVeiculos.setAdapter(new ListaVeiculoAdaptador(getContext(), list));

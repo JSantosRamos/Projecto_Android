@@ -81,14 +81,19 @@ public class DetalhesVeiculoActivity extends AppCompatActivity {
         btnReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = getString(R.string.standEmail);
+                Intent intentReserva = new Intent(DetalhesVeiculoActivity.this, ReservaActivity.class);
+                intentReserva.putExtra(DetalhesTestdriveActivity.ID_VEICULO, veiculo.getId());
+                intentReserva.putExtra(DetalhesTestdriveActivity.CAPA, veiculo.getImagem());
+                startActivity(intentReserva);
+
+               /* String email = getString(R.string.standEmail);
 
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("plain/text");
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
                 intent.putExtra(Intent.EXTRA_SUBJECT, veiculo.toString());
                 intent.putExtra(Intent.EXTRA_TEXT, "");
-                startActivity(Intent.createChooser(intent, ""));
+                startActivity(Intent.createChooser(intent, ""));*/
             }
         });
     }

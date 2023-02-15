@@ -266,6 +266,7 @@ public class SingletonTestdrive {
                     jsonBody.put("date", testdrive.getData());
                     jsonBody.put("time", testdrive.getHora());
                     jsonBody.put("description", testdrive.getMotivo());
+                    jsonBody.put("status", testdrive.getEstado());
 
                     String requestBody = jsonBody.toString();
 

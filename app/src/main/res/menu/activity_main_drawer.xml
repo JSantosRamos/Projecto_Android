@@ -33,4 +33,16 @@
             android:icon="@drawable/ic_car_holo_light"
             android:title="@string/meusveiculosNav" />
     </group>
+    <group>
+
+    </group>
+    <group
+        android:id="@+id/menuSair"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navSair"
+            android:icon="@drawable/ic_sair"
+            android:title="@string/sairNav" />
+
+    </group>
 </menu>

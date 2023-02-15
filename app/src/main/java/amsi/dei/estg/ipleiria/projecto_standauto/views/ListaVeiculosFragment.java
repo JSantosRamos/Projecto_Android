@@ -65,7 +65,6 @@ public class ListaVeiculosFragment extends Fragment implements VeiculosListener 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_pesquisa, menu);
-
         MenuItem itemPequisa = menu.findItem(R.id.itemPesquisa);
 
         SearchView searchView = (SearchView) itemPequisa.getActionView();
@@ -89,7 +88,6 @@ public class ListaVeiculosFragment extends Fragment implements VeiculosListener 
         });
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 
     @Override
     public void onRefreshlista(ArrayList<Veiculo> list) {

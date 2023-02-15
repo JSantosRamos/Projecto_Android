@@ -16,6 +16,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,9 +44,10 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
     private EditText etMotivo;
     private Spinner spinnerHora;
     private String hora;
-    private Button btnData;
-    private ImageView ivCapa;
+    private Button btnData, btnAceitar, btnRecusar;
+    private ImageView ivCapa, ivIconInfo;
     private FloatingActionButton fabAdicionar;
+    private TextView tvInfo;
 
     private Testdrive testdrive;
 
@@ -54,6 +57,12 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
     public static final int OP_CODE_ADICIONAR = 101;
     public static final int OP_CODE_EDITAR = 100;
     public static final int OP_CODE_APAGAR = 50;
+
+    private static final String POR_VER = "Por ver";
+    private static final String ACEITE = "Aceite";
+    private static final String RECUSADO = "Recusado";
+    private static final String RESPOSTA = "Aguardando Resposta";
+    private boolean canDelete = true;
 
     private String dataAtual;
     private ArrayAdapter<CharSequence> adapterSpinner;
@@ -70,9 +79,11 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
         etMotivo = findViewById(R.id.etMotivoTestdrive);
         btnData = findViewById(R.id.btnDataTestedrive);
         ivCapa = findViewById(R.id.ivCapaTestedriveDetalhe);
-
+        btnAceitar = findViewById(R.id.btnAceitarTestdrive);
+        btnRecusar = findViewById(R.id.btnRecusarTestdrive);
         fabAdicionar = findViewById(R.id.floatingAdicionarTestdrive);
-
+        tvInfo = findViewById(R.id.tvInfoTestdrive);
+        ivIconInfo = findViewById(R.id.ivIconInfoTestdrive);
 
         //region Spinner Hora
         adapterSpinner = ArrayAdapter.createFromResource(this,
@@ -90,7 +101,7 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
         int mes = calendar.get(Calendar.MONTH);
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
-        dataAtual = dia + "-" + mes + 1 + "-" + ano;
+        dataAtual = dia + "-" + (mes + 1) + "-" + ano;
 
         btnData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,10 +138,59 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
             }
         }
 
+        //region Verificar Estado
+        if (testdrive != null) {
+            switch (testdrive.getEstado()) {
+                case POR_VER:
+
+                    break;
+                case ACEITE:
+                    fabAdicionar.setVisibility(View.GONE);
+                    btnData.setEnabled(false);
+                    spinnerHora.setEnabled(false);
+                    etMotivo.setEnabled(false);
+                    canDelete = false;
+                    break;
+                case RECUSADO:
+                    fabAdicionar.setVisibility(View.GONE);
+                    btnData.setEnabled(false);
+                    spinnerHora.setEnabled(false);
+                    etMotivo.setEnabled(false);
+                    canDelete = true;
+                    break;
+                case RESPOSTA:
+                    fabAdicionar.setVisibility(View.GONE);
+                    btnRecusar.setVisibility(View.VISIBLE);
+                    btnAceitar.setVisibility(View.VISIBLE);
+                    btnData.setEnabled(false);
+                    spinnerHora.setEnabled(false);
+                    etMotivo.setEnabled(false);
+                    canDelete = false;
+                    tvInfo.setVisibility(View.VISIBLE);
+                    ivIconInfo.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
+        //endregion
+
         fabAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adicionarTestdrive();
+            }
+        });
+
+        btnAceitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogConfirmar("Aceitar", ACEITE);
+            }
+        });
+
+        btnRecusar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogConfirmar("Recusar", RECUSADO);
             }
         });
     }
@@ -173,11 +233,12 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
     //region Validar Campos
     public boolean isDataValida() {
         String data = btnData.getText().toString();
+
         try {
             @SuppressLint("SimpleDateFormat") Date date1 = new SimpleDateFormat("dd-MM-yyyy").parse(dataAtual);
             @SuppressLint("SimpleDateFormat") Date date2 = new SimpleDateFormat("dd-MM-yyyy").parse(data);
 
-            return !Objects.requireNonNull(date2).before(date1);
+            return (!Objects.requireNonNull(date2).before(date1) && !date2.equals(date1));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -198,7 +259,7 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (testdrive != null) {
+        if (canDelete) {
             getMenuInflater().inflate(R.menu.menu_detalhe_testedrive_remover, menu);
             return super.onCreateOptionsMenu(menu);
         }
@@ -227,6 +288,24 @@ public class DetalhesTestdriveActivity extends AppCompatActivity implements Test
                         intent.putExtra(OP_CODE, OP_CODE_APAGAR);
                         setResult(RESULT_OK, intent);
                         finish();
+                    }
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).show();
+    }
+
+    private void dialogConfirmar(String text, String value) {
+        AlertDialog builder = new AlertDialog.Builder(this).
+                setTitle("Confirmar").
+                setMessage("Tem a certeza que quer " + text + "?").
+                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        testdrive.setEstado(value);
+                        adicionarTestdrive();
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override

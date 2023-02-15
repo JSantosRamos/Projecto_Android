@@ -103,6 +103,54 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAceitarTestdrive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5sp"
+                    android:backgroundTint="#007500"
+                    android:visibility="gone"
+                    android:text="@string/btnAceitar" />
+
+                <Button
+                    android:id="@+id/btnRecusarTestdrive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5sp"
+                    android:backgroundTint="#880808"
+                    android:visibility="gone"
+                    android:layout_weight="1"
+                    android:text="@string/btnRecusar" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivIconInfoTestdrive"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_info" />
+
+                <TextView
+                    android:id="@+id/tvInfoTestdrive"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tvInfoTestdrive" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -10,12 +10,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Objects;
 
 import amsi.dei.estg.ipleiria.projecto_standauto.R;
 
@@ -57,26 +62,41 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         Fragment fragment = null;
         switch (opcao) {
             case R.id.navLista:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Veículos");
                 fragment = new ListaVeiculosFragment();
                 break;
             case R.id.navFavoritos:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Favoritos");
                 fragment = new ListaFavoritosFragment();
                 break;
 
             case R.id.navTestdrive:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Test-Drives");
                 fragment = new ListaTestdrivesFragment();
                 break;
 
             case R.id.navMeusVeiculos:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Meus veículos");
                 fragment = new ListaMeusVeiculosFragament();
                 break;
 
             case R.id.navPerfil:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Perfil");
                 fragment = new PerfilFragment();
+                break;
+
+            case R.id.navSair:
+                SharedPreferences sharedPref = this.getSharedPreferences(LoginActivity.DADOS_USER, Context.MODE_PRIVATE);
+                sharedPref.edit().clear().apply();
+                Intent intent = new Intent(this, LoginActivity.class );
+                startActivity(intent);
+                finish();
                 break;
         }
 
-        fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
+        if(fragment != null){
+            fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
+        }
         dL.closeDrawer(GravityCompat.START);
         return false;
     }
@@ -90,13 +110,5 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
     private void carregarHeader() {
 
-       /* SharedPreferences sharedPref = this.getSharedPreferences(LoginActivity.DADOS_USER, Context.MODE_PRIVATE);
-        int idUser = sharedPref.getInt(LoginActivity.ID_KEY, -1);
-
-        ImageDbHelper imageDbHelper = new ImageDbHelper(this);
-        Bitmap bitmap = imageDbHelper.getImage(idUser);
-        if (bitmap != null) {
-            ivPerfil.setImageBitmap(bitmap);
-        }*/
     }
 }

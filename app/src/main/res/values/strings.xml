@@ -31,6 +31,9 @@
     <string name="tvMorada">Morada:</string>
     <string name="tvValor">Valor:</string>
     <string name="btnContactar">Contactar</string>
+    <string name="btnAceitar">Aceitar</string>
+    <string name="btnRecusar">Recusar</string>
+    <string name="tvInfoTestdrive">Verifique as novas alterações por parte do stand.</string>
 
 
     <string name="tvItemCaracteristicas">Caracteristicas</string>
@@ -49,6 +52,7 @@
     <string name="testdriveNav">Teste-Drives</string>
     <string name="meusveiculosNav">Meus Veículos</string>
     <string name="perfilNav">Perfil</string>
+    <string name="sairNav">Terminar sessão</string>
 
     <string name="ndOpen">Open</string>
     <string name="ndClose">Close</string>

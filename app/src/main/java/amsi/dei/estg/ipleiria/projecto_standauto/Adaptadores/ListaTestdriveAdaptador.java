@@ -1,7 +1,9 @@
 package amsi.dei.estg.ipleiria.projecto_standauto.Adaptadores;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,21 +81,34 @@ public class ListaTestdriveAdaptador extends BaseAdapter {
             ivImage = view.findViewById(R.id.ivTestdriveLista);
         }
 
+        @SuppressLint("SetTextI18n")
         public void update(Testdrive test) {
-            tvDia.setText(test.getData());
-            tvHora.setText(test.getHora());
-            tvEstado.setText(test.getEstado());
+            tvDia.setText(" " + test.getData());
+            tvHora.setText(" " + test.getHora());
+            tvEstado.setText(" " + test.getEstado());
+
+            switch (test.getEstado()) {
+                case "Aceite":
+                    tvEstado.setTextColor(Color.parseColor("#007500"));
+                    break;
+                case "Recusado":
+                    tvEstado.setTextColor(Color.RED);
+                    break;
+                case "Aguardando Resposta":
+                    tvEstado.setTextColor(Color.BLUE);
+                    break;
+            }
 
             Veiculo veiculo = SingletonVeiculos.getInstance(context).getVeiculo(test.getIdVeiculo());
             if (veiculo != null) {
                 String sVeiculo = veiculo.getMarca() + ", " + veiculo.getModelo() + " (" + veiculo.getMatricula() + ") ";
-                tvVeiculo.setText(sVeiculo);
+                tvVeiculo.setText(" " + sVeiculo);
 
                 String urlImage = veiculo.getImagem();
                 urlImage = urlImage.replace("http://backendstand.test/", "http://10.0.2.2:80/");
                 Glide.with(context).load(urlImage).placeholder(R.drawable.ic_testdrive_capa).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivImage);
             } else {
-                tvVeiculo.setText("Veículo já não está dispovível");
+                tvVeiculo.setText(" Veículo já não está dispovível");
             }
         }
     }
