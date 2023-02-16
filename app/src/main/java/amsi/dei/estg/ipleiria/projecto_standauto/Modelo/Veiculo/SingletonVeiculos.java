@@ -29,10 +29,10 @@ import java.util.Map;
 import amsi.dei.estg.ipleiria.projecto_standauto.Listener.LoginListener;
 import amsi.dei.estg.ipleiria.projecto_standauto.Listener.SignupListener;
 import amsi.dei.estg.ipleiria.projecto_standauto.Listener.VeiculosListener;
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Reserva.Reserva;
 import amsi.dei.estg.ipleiria.projecto_standauto.views.LoginActivity;
 import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Favorito.FavoritosDBHelper;
 import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.User.User;
-import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Venda.Venda;
 import amsi.dei.estg.ipleiria.projecto_standauto.R;
 import amsi.dei.estg.ipleiria.projecto_standauto.utils.JsonParserHelper;
 
@@ -43,6 +43,7 @@ public class SingletonVeiculos {
     private final String urlLoginAPI = "http://10.0.2.2:80/api/users/login";
     private final String urlVeiculosAPI = "http://10.0.2.2:80/api/vehicles";
     private final String urlSignupAPI = "http://10.0.2.2:80/api/users";
+    private final String urlReservaAPI = "http://10.0.2.2:80/api/reserves";
 
     private ArrayList<Veiculo> veiculos;
 
@@ -52,7 +53,6 @@ public class SingletonVeiculos {
     private LoginListener loginListener;
     private SignupListener signupListener;
     private VeiculosListener veiculosListener;
-
 
     public static synchronized SingletonVeiculos getInstance(Context context) {
         if (instancia == null) {
@@ -271,5 +271,74 @@ public class SingletonVeiculos {
     public boolean verificarVeiculoFavoritoBD(int idVeiculo, int idUser) {
         return favoritosDBHelper.verificarVeiculoFavortioDB(idVeiculo, idUser);
     }
+    //endregion
+
+    //region Reserva
+
+    public void adicionarReserva(Reserva reserva, Context context) {
+        if (!JsonParserHelper.isConnectedInternet(context)) {
+            Toast.makeText(context, R.string.semInternet, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                urlReservaAPI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(context, "Reserva registada.", Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    // request body goes here
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("idVehicle", reserva.getIdVehicle());
+                    jsonBody.put("number", reserva.getNumero());
+                    jsonBody.put("nif", reserva.getNif());
+                    jsonBody.put("morada", reserva.getMorada());
+                    jsonBody.put("image", reserva.getCc());
+
+                    String requestBody = jsonBody.toString();
+
+                    return requestBody.getBytes(StandardCharsets.UTF_8);
+                } catch (JSONException ex) {
+                    Log.d("Error", ex.getMessage());
+                    return null;
+                }
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                SharedPreferences sharedPref = context.getSharedPreferences(LoginActivity.DADOS_USER, Context.MODE_PRIVATE);
+                String email = sharedPref.getString(LoginActivity.EMAIL_KEY, "");
+                String password = sharedPref.getString(LoginActivity.PASSWORD_KEY, "");
+
+                Map<String, String> headers = new HashMap<>();
+
+                String credentials = email + ":" + password;
+                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+                headers.put("Authorization", auth);
+                return headers;
+            }
+        };
+
+        mRequestQueue.add(stringRequest);
+    }
+
     //endregion
 }

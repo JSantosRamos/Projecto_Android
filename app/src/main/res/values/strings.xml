@@ -30,7 +30,7 @@
     <string name="tvDadosVenda">Dados da Venda</string>
     <string name="tvMorada">Morada:</string>
     <string name="tvValor">Valor:</string>
-    <string name="btnContactar">Contactar</string>
+    <string name="btnReserva">Reservar</string>
     <string name="btnAceitar">Aceitar</string>
     <string name="btnRecusar">Recusar</string>
     <string name="tvInfoTestdrive">Verifique as novas alterações por parte do stand.</string>

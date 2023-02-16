@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Número" />
+                    android:text="Telemóvel:" />
 
                 <EditText
                     android:id="@+id/etNumero"
@@ -53,7 +53,7 @@
                     android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NIF" />
+                    android:text="NIF:" />
 
                 <EditText
                     android:id="@+id/etNIF"
@@ -74,7 +74,7 @@
                     android:id="@+id/textView30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Morada" />
+                    android:text="Morada:" />
 
                 <EditText
                     android:id="@+id/etMorada"
@@ -82,8 +82,9 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Name" />
+                    />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,10 +96,10 @@
                     android:id="@+id/textView32"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Escollher imagem" />
+                    android:text="Imagem do cartão de cidadão:" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/ivCC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:srcCompat="@tools:sample/avatars" />
@@ -107,7 +108,7 @@
                     android:id="@+id/btnCarregarImagem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Upload" />
 
             </LinearLayout>
 
@@ -116,7 +117,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingAdicionarTestdrive"
+        android:id="@+id/floatingAdicionarReserva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"

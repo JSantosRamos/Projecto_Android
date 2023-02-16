@@ -22,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
 
+import amsi.dei.estg.ipleiria.projecto_standauto.Modelo.Veiculo.SingletonVeiculos;
 import amsi.dei.estg.ipleiria.projecto_standauto.R;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +36,12 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //
+        boolean reserva = getIntent().getBooleanExtra(ReservaActivity.ADICIONADO, false);
+        if(reserva){
+            SingletonVeiculos.getInstance(this).getAllVeiculosAPI(this);
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

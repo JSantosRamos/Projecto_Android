@@ -82,8 +82,7 @@ public class DetalhesVeiculoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentReserva = new Intent(DetalhesVeiculoActivity.this, ReservaActivity.class);
-                intentReserva.putExtra(DetalhesTestdriveActivity.ID_VEICULO, veiculo.getId());
-                intentReserva.putExtra(DetalhesTestdriveActivity.CAPA, veiculo.getImagem());
+                intentReserva.putExtra(ReservaActivity.ID_VEICULO, veiculo.getId());
                 startActivity(intentReserva);
 
                /* String email = getString(R.string.standEmail);

@@ -319,7 +319,7 @@
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
                 android:layout_weight="1"
-                android:text="@string/btnContactar" />
+                android:text="@string/btnReserva" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
